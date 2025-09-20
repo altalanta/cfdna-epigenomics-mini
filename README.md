@@ -1,0 +1,34 @@
+# cfDNA Epigenomics Mini
+
+A production-quality demonstration of early cancer detection from cell-free DNA (cfDNA) epigenomic signals, combining methylation patterns and fragmentomics features. This repository implements end-to-end machine learning pipelines with synthetic data for privacy and reproducibility.
+
+## Quickstart
+
+```bash
+make setup && make simulate && make train && make eval
+```
+
+## JD Requirements Mapping
+
+- **Methylation Analysis**: `src/cfdna/simulate.py` generates DMR-based synthetic methylation data; `src/cfdna/features.py` aggregates CpGs into differential methylation regions
+- **Fragmentomics**: Size-bin frequency features and TSS enrichment proxies in simulation and feature modules  
+- **Machine Learning**: Scikit-learn baselines and PyTorch MLP in `src/cfdna/models.py` with proper train/val/test splits
+- **Statistical Validation**: DeLong ROC comparison, calibration analysis, decision curves in `src/cfdna/metrics.py`
+- **Production Readiness**: Type hints, comprehensive tests, CI/CD, SQL schema, AWS deployment stubs
+- **Notebooks**: Complete analysis workflow from experimental design to model interpretation
+
+## Synthetic Data & Limitations
+
+The default synthetic dataset (n=600, 3 batches, mild class imbalance) is designed for rapid prototyping and CI/CD. Real cfDNA data would require:
+- Larger sample sizes for adequate statistical power
+- More sophisticated batch correction methods
+- Integration with clinical covariates and survival outcomes
+- Regulatory compliance for clinical deployment
+
+## AWS Deployment
+
+Run `python src/cfdna/aws/submit_batch_job.py` locally (no credentials required) to see the exact AWS Batch CLI command that would be executed in production.
+
+## License
+
+MIT License - see LICENSE file for details.
