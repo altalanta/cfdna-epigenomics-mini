@@ -1,0 +1,48 @@
+# Synthetic cfDNA dataset configuration
+dataset:
+  name: "synthetic_cfdna_v1"
+  n_samples: 600
+  n_controls: 350  # mild class imbalance (58% controls, 42% cancer)
+  n_cancer: 250
+  random_seed: 42
+
+# Sample metadata
+samples:
+  n_batches: 3
+  centers: ["site_a", "site_b", "site_c"]
+  age_range: [40, 80]
+  sex_ratio: 0.5  # proportion female
+
+# Methylation simulation
+methylation:
+  n_cpgs: 20000
+  n_dmrs: 200  # differential methylation regions
+  cpgs_per_dmr: 100
+  
+  # Effect sizes for cancer vs control
+  dmr_effect_size_mean: 0.15
+  dmr_effect_size_std: 0.05
+  
+  # Beta-binomial parameters
+  alpha_base: 2.0
+  beta_base: 8.0
+  
+  # Batch effects
+  batch_effect_std: 0.02
+  
+  # Missing data (MAR by batch)
+  missingness_rate: 0.05
+
+# Fragmentomics simulation  
+fragmentomics:
+  size_bins: [50, 100, 150, 200, 250, 300, 400, 500]  # fragment size bins
+  tss_enrichment_bins: 10  # TSS enrichment profile bins
+  
+  # Effect sizes for cancer vs control
+  size_effect_mean: 0.1
+  size_effect_std: 0.03
+  tss_effect_mean: 0.08
+  tss_effect_std: 0.02
+  
+  # Noise parameters
+  noise_std: 0.05

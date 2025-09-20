@@ -1,0 +1,78 @@
+{
+  "jobDefinitionName": "cfdna-cancer-detection",
+  "type": "container",
+  "platformCapabilities": ["EC2"],
+  "containerProperties": {
+    "image": "your-account.dkr.ecr.us-west-2.amazonaws.com/cfdna-epigenomics:latest",
+    "vcpus": 4,
+    "memory": 8192,
+    "jobRoleArn": "arn:aws:iam::your-account:role/BatchJobRole",
+    "executionRoleArn": "arn:aws:iam::your-account:role/BatchExecutionRole",
+    "environment": [
+      {
+        "name": "AWS_DEFAULT_REGION",
+        "value": "us-west-2"
+      },
+      {
+        "name": "CFDNA_CONFIG_S3_BUCKET",
+        "value": "your-cfdna-config-bucket"
+      },
+      {
+        "name": "CFDNA_DATA_S3_BUCKET", 
+        "value": "your-cfdna-data-bucket"
+      },
+      {
+        "name": "CFDNA_OUTPUT_S3_BUCKET",
+        "value": "your-cfdna-output-bucket"
+      }
+    ],
+    "mountPoints": [],
+    "volumes": [],
+    "ulimits": [],
+    "resourceRequirements": [
+      {
+        "type": "VCPU",
+        "value": "4"
+      },
+      {
+        "type": "MEMORY", 
+        "value": "8192"
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/aws/batch/cfdna-cancer-detection",
+        "awslogs-region": "us-west-2",
+        "awslogs-stream-prefix": "cfdna"
+      }
+    },
+    "secrets": [
+      {
+        "name": "DATABASE_URL",
+        "valueFrom": "arn:aws:secretsmanager:us-west-2:your-account:secret:cfdna/database-url"
+      }
+    ],
+    "fargatePlatformConfiguration": {
+      "platformVersion": "LATEST"
+    }
+  },
+  "retryStrategy": {
+    "attempts": 3
+  },
+  "timeout": {
+    "attemptDurationSeconds": 7200
+  },
+  "tags": {
+    "Project": "cfDNA-Cancer-Detection",
+    "Environment": "Production",
+    "Team": "Bioinformatics"
+  },
+  "parameters": {
+    "inputConfigPath": "s3://your-cfdna-config-bucket/configs/",
+    "outputPath": "s3://your-cfdna-output-bucket/results/",
+    "modelType": "mlp",
+    "experimentId": "default"
+  },
+  "propagateTags": true
+}
