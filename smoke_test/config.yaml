@@ -1,0 +1,35 @@
+dataset:
+  n_cancer: 40
+  n_controls: 60
+  n_samples: 100
+  random_seed: 42
+fragmentomics:
+  noise_std: 0.01
+  size_bins:
+  - 100
+  - 200
+  - 300
+  size_effect_mean: 0.02
+  size_effect_std: 0.01
+  tss_effect_mean: 0.1
+  tss_effect_std: 0.05
+  tss_enrichment_bins: 3
+methylation:
+  alpha_base: 2.0
+  batch_effect_std: 0.02
+  beta_base: 8.0
+  cpgs_per_dmr: 50
+  dmr_effect_size_mean: 1.5
+  dmr_effect_size_std: 0.5
+  missingness_rate: 0.05
+  n_cpgs: 1000
+  n_dmrs: 10
+samples:
+  age_range:
+  - 45
+  - 80
+  centers:
+  - Site_A
+  - Site_B
+  n_batches: 2
+  sex_ratio: 0.6

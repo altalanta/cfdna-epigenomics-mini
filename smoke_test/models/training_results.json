@@ -1,0 +1,8 @@
+{
+  "logistic": {
+    "model_path": "smoke_test/models/logistic_model.pkl",
+    "train_auc": 1.0,
+    "val_auc": 1.0,
+    "test_auc": 1.0
+  }
+}

@@ -1,0 +1,2 @@
+model,test_auroc,test_auroc_ci_lower,test_auroc_ci_upper,test_auprc,test_brier,sens_at_spec90,sens_at_spec95
+logistic,1.0,0.9999999999999999,1.0,1.0,0.00016979822132053037,0.0,0.0
